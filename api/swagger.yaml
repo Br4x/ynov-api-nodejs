@@ -1,0 +1,2873 @@
+---
+swagger: "2.0"
+info:
+  description: "Ynov API for YnovImmo"
+  version: "1.0.0"
+  title: "Ynov API pour l'application YnovImmo"
+host: "localhost:8080"
+basePath: "/api/v1"
+schemes:
+- "http"
+paths:
+  /chat:
+    get:
+      tags:
+      - "chat"
+      summary: "get all chat by pagination"
+      description: ""
+      operationId: "chatGET"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where\
+          \ id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+        default: 2
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ChatPagination"
+      x-swagger-router-controller: "Chat"
+    post:
+      tags:
+      - "chat"
+      summary: "create chat"
+      description: "create chat"
+      operationId: "chatPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create chat"
+        required: true
+        schema:
+          $ref: "#/definitions/Chat"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "Chat"
+    patch:
+      tags:
+      - "chat"
+      summary: "update chat"
+      description: "update chat"
+      operationId: "chatPATCH"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create chat"
+        required: true
+        schema:
+          $ref: "#/definitions/Chat"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "Chat"
+  /chat/{Id}:
+    get:
+      tags:
+      - "chat"
+      summary: "get a chat by ID"
+      description: "get a chat by ID"
+      operationId: "chatIdGET"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of chat to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Chat"
+      x-swagger-router-controller: "Chat"
+    delete:
+      tags:
+      - "chat"
+      summary: "Destroy a chat by ID"
+      description: "delete a chat by ID"
+      operationId: "chatIdDELETE"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of chat to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "Chat"
+  /chat-comment:
+    get:
+      tags:
+      - "chat-comment"
+      summary: "get all chat-comment by pagination"
+      description: ""
+      operationId: "chat_commentGET"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where\
+          \ id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+        default: 2
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ChatCommentPagination"
+      x-swagger-router-controller: "ChatComment"
+    post:
+      tags:
+      - "chat-comment"
+      summary: "create chat-comment"
+      description: "create chat-comment"
+      operationId: "chat_commentPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create chat-comment"
+        required: true
+        schema:
+          $ref: "#/definitions/ChatComment"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "ChatComment"
+    patch:
+      tags:
+      - "chat-comment"
+      summary: "update chat-comment"
+      description: "update chat-comment"
+      operationId: "chat_commentPATCH"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create chat-comment"
+        required: true
+        schema:
+          $ref: "#/definitions/ChatComment"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "ChatComment"
+  /chat-comment/{Id}:
+    get:
+      tags:
+      - "chat-comment"
+      summary: "get a chat-comment by ID"
+      description: "get a chat-comment by ID"
+      operationId: "chat_commentIdGET"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of chat-comment to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ChatComment"
+      x-swagger-router-controller: "ChatComment"
+    delete:
+      tags:
+      - "chat-comment"
+      summary: "Destroy a chat-comment by ID"
+      description: "delete a chat-comment by ID"
+      operationId: "chat_commentIdDELETE"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of chat-comment to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "ChatComment"
+  /city:
+    get:
+      tags:
+      - "city"
+      summary: "get all city by pagination"
+      description: ""
+      operationId: "cityGET"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where\
+          \ id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+        default: 2
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/CityPagination"
+      x-swagger-router-controller: "City"
+    post:
+      tags:
+      - "city"
+      summary: "create city"
+      description: "create city"
+      operationId: "cityPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create city"
+        required: true
+        schema:
+          $ref: "#/definitions/City"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "City"
+    patch:
+      tags:
+      - "city"
+      summary: "update city"
+      description: "update city"
+      operationId: "cityPATCH"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create city"
+        required: true
+        schema:
+          $ref: "#/definitions/City"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "City"
+  /city/{Id}:
+    get:
+      tags:
+      - "city"
+      summary: "get a city by ID"
+      description: "get a city by ID"
+      operationId: "cityIdGET"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of city to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/City"
+      x-swagger-router-controller: "City"
+    delete:
+      tags:
+      - "city"
+      summary: "Destroy a city by ID"
+      description: "delete a city by ID"
+      operationId: "cityIdDELETE"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of city to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "City"
+  /cities-district:
+    get:
+      tags:
+      - "cities-district"
+      summary: "get all cities-district by pagination"
+      description: ""
+      operationId: "cities_districtGET"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where\
+          \ id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+        default: 2
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/CitiesDistrictPagination"
+      x-swagger-router-controller: "CitiesDistrict"
+    post:
+      tags:
+      - "cities-district"
+      summary: "create cities-district"
+      description: "create cities-district"
+      operationId: "cities_districtPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create cities-district"
+        required: true
+        schema:
+          $ref: "#/definitions/CitiesDistrict"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "CitiesDistrict"
+    patch:
+      tags:
+      - "cities-district"
+      summary: "update cities-district"
+      description: "update cities-district"
+      operationId: "cities_districtPATCH"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create cities-district"
+        required: true
+        schema:
+          $ref: "#/definitions/CitiesDistrict"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "CitiesDistrict"
+  /cities-district/{Id}:
+    get:
+      tags:
+      - "cities-district"
+      summary: "get a cities-district by ID"
+      description: "get a cities-district by ID"
+      operationId: "cities_districtIdGET"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of cities-district to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/CitiesDistrict"
+      x-swagger-router-controller: "CitiesDistrict"
+    delete:
+      tags:
+      - "cities-district"
+      summary: "Destroy a cities-district by ID"
+      description: "delete a cities-district by ID"
+      operationId: "cities_districtIdDELETE"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of cities-district to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "CitiesDistrict"
+  /real-estate:
+    get:
+      tags:
+      - "real-estate"
+      summary: "get all real-estate by pagination"
+      description: ""
+      operationId: "real_estateGET"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where\
+          \ id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+        default: 2
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/RealEstatePagination"
+      x-swagger-router-controller: "RealEstate"
+    post:
+      tags:
+      - "real-estate"
+      summary: "create real-estate"
+      description: "create real-estate"
+      operationId: "real_estatePOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create real-estate"
+        required: true
+        schema:
+          $ref: "#/definitions/RealEstate"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "RealEstate"
+    patch:
+      tags:
+      - "real-estate"
+      summary: "update real-estate"
+      description: "update real-estate"
+      operationId: "real_estatePATCH"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create real-estate"
+        required: true
+        schema:
+          $ref: "#/definitions/RealEstate"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "RealEstate"
+  /real-estate/{Id}:
+    get:
+      tags:
+      - "real-estate"
+      summary: "get a real-estate by ID"
+      description: "get a real-estate by ID"
+      operationId: "real_estateIdGET"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of real-estate to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/RealEstate"
+      x-swagger-router-controller: "RealEstate"
+    delete:
+      tags:
+      - "real-estate"
+      summary: "Destroy a real-estate by ID"
+      description: "delete a real-estate by ID"
+      operationId: "real_estateIdDELETE"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of real-estate to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "RealEstate"
+  /real-estate-availability:
+    get:
+      tags:
+      - "real-estate-availability"
+      summary: "get all real-estate-availability by pagination"
+      description: ""
+      operationId: "real_estate_availabilityGET"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where\
+          \ id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+        default: 2
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/RealEstateAvailabilityPagination"
+      x-swagger-router-controller: "RealEstateAvailability"
+    post:
+      tags:
+      - "real-estate-availability"
+      summary: "create real-estate-availability"
+      description: "create real-estate-availability"
+      operationId: "real_estate_availabilityPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create real-estate-availability"
+        required: true
+        schema:
+          $ref: "#/definitions/RealEstateAvailability"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "RealEstateAvailability"
+    patch:
+      tags:
+      - "real-estate-availability"
+      summary: "update real-estate-availability"
+      description: "update real-estate-availability"
+      operationId: "real_estate_availabilityPATCH"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create real-estate-availability"
+        required: true
+        schema:
+          $ref: "#/definitions/RealEstateAvailability"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "RealEstateAvailability"
+  /real-estate-availability/{Id}:
+    get:
+      tags:
+      - "real-estate-availability"
+      summary: "get a real-estate-availability by ID"
+      description: "get a real-estate-availability by ID"
+      operationId: "real_estate_availabilityIdGET"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of real-estate-availability to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/RealEstateAvailability"
+      x-swagger-router-controller: "RealEstateAvailability"
+    delete:
+      tags:
+      - "real-estate-availability"
+      summary: "Destroy a real-estate-availability by ID"
+      description: "delete a real-estate-availability by ID"
+      operationId: "real_estate_availabilityIdDELETE"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of real-estate-availability to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "RealEstateAvailability"
+  /real-estate-feedback:
+    get:
+      tags:
+      - "real-estate-feedback"
+      summary: "get all real-estate-feedback by pagination"
+      description: ""
+      operationId: "real_estate_feedbackGET"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where\
+          \ id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+        default: 2
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/RealEstateFeedbackPagination"
+      x-swagger-router-controller: "RealEstateFeedback"
+    post:
+      tags:
+      - "real-estate-feedback"
+      summary: "create real-estate-feedback"
+      description: "create real-estate-feedback"
+      operationId: "real_estate_feedbackPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create real-estate-feedback"
+        required: true
+        schema:
+          $ref: "#/definitions/RealEstateFeedback"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "RealEstateFeedback"
+    patch:
+      tags:
+      - "real-estate-feedback"
+      summary: "update real-estate-feedback"
+      description: "update real-estate-feedback"
+      operationId: "real_estate_feedbackPATCH"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create real-estate-feedback"
+        required: true
+        schema:
+          $ref: "#/definitions/RealEstateFeedback"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "RealEstateFeedback"
+  /real-estate-feedback/{Id}:
+    get:
+      tags:
+      - "real-estate-feedback"
+      summary: "get a real-estate-feedback by ID"
+      description: "get a real-estate-feedback by ID"
+      operationId: "real_estate_feedbackIdGET"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of real-estate-feedback to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/RealEstateFeedback"
+      x-swagger-router-controller: "RealEstateFeedback"
+    delete:
+      tags:
+      - "real-estate-feedback"
+      summary: "Destroy a real-estate-feedback by ID"
+      description: "delete a real-estate-feedback by ID"
+      operationId: "real_estate_feedbackIdDELETE"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of real-estate-feedback to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "RealEstateFeedback"
+  /real-estate-image:
+    get:
+      tags:
+      - "real-estate-image"
+      summary: "get all real-estate-image by pagination"
+      description: ""
+      operationId: "real_estate_imageGET"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where\
+          \ id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+        default: 2
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/RealEstateImagePagination"
+      x-swagger-router-controller: "RealEstateImage"
+    post:
+      tags:
+      - "real-estate-image"
+      summary: "create real-estate-image"
+      description: "create real-estate-image"
+      operationId: "real_estate_imagePOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create real-estate-image"
+        required: true
+        schema:
+          $ref: "#/definitions/RealEstateImage"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "RealEstateImage"
+    patch:
+      tags:
+      - "real-estate-image"
+      summary: "update real-estate-image"
+      description: "update real-estate-image"
+      operationId: "real_estate_imagePATCH"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create real-estate-image"
+        required: true
+        schema:
+          $ref: "#/definitions/RealEstateImage"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "RealEstateImage"
+  /real-estate-image/{Id}:
+    get:
+      tags:
+      - "real-estate-image"
+      summary: "get a real-estate-image by ID"
+      description: "get a real-estate-image by ID"
+      operationId: "real_estate_imageIdGET"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of real-estate-image to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/RealEstateImage"
+      x-swagger-router-controller: "RealEstateImage"
+    delete:
+      tags:
+      - "real-estate-image"
+      summary: "Destroy a real-estate-image by ID"
+      description: "delete a real-estate-image by ID"
+      operationId: "real_estate_imageIdDELETE"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of real-estate-image to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "RealEstateImage"
+  /real-estate-propal:
+    get:
+      tags:
+      - "real-estate-propal"
+      summary: "get all real-estate-propal by pagination"
+      description: ""
+      operationId: "real_estate_propalGET"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where\
+          \ id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+        default: 2
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/RealEstatePropalPagination"
+      x-swagger-router-controller: "RealEstatePropal"
+    post:
+      tags:
+      - "real-estate-propal"
+      summary: "create real-estate-propal"
+      description: "create real-estate-propal"
+      operationId: "real_estate_propalPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create real-estate-propal"
+        required: true
+        schema:
+          $ref: "#/definitions/RealEstatePropal"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "RealEstatePropal"
+    patch:
+      tags:
+      - "real-estate-propal"
+      summary: "update real-estate-propal"
+      description: "update real-estate-propal"
+      operationId: "real_estate_propalPATCH"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create real-estate-propal"
+        required: true
+        schema:
+          $ref: "#/definitions/RealEstatePropal"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "RealEstatePropal"
+  /real-estate-propal/{Id}:
+    get:
+      tags:
+      - "real-estate-propal"
+      summary: "get a real-estate-propal by ID"
+      description: "get a real-estate-propal by ID"
+      operationId: "real_estate_propalIdGET"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of real-estate-propal to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/RealEstatePropal"
+      x-swagger-router-controller: "RealEstatePropal"
+    delete:
+      tags:
+      - "real-estate-propal"
+      summary: "Destroy a real-estate-propal by ID"
+      description: "delete a real-estate-propal by ID"
+      operationId: "real_estate_propalIdDELETE"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of real-estate-propal to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "RealEstatePropal"
+  /real-estate-propals-buyer-indication:
+    get:
+      tags:
+      - "real-estate-propals-buyer-indication"
+      summary: "get all real-estate-propals-buyer-indication by pagination"
+      description: ""
+      operationId: "real_estate_propals_buyer_indicationGET"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where\
+          \ id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+        default: 2
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/RealEstatePropalsBuyerIndicationPagination"
+      x-swagger-router-controller: "RealEstatePropalsBuyerIndication"
+    post:
+      tags:
+      - "real-estate-propals-buyer-indication"
+      summary: "create real-estate-propals-buyer-indication"
+      description: "create real-estate-propals-buyer-indication"
+      operationId: "real_estate_propals_buyer_indicationPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create real-estate-propals-buyer-indication"
+        required: true
+        schema:
+          $ref: "#/definitions/RealEstatePropalsBuyerIndication"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "RealEstatePropalsBuyerIndication"
+    patch:
+      tags:
+      - "real-estate-propals-buyer-indication"
+      summary: "update real-estate-propals-buyer-indication"
+      description: "update real-estate-propals-buyer-indication"
+      operationId: "real_estate_propals_buyer_indicationPATCH"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create real-estate-propals-buyer-indication"
+        required: true
+        schema:
+          $ref: "#/definitions/RealEstatePropalsBuyerIndication"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "RealEstatePropalsBuyerIndication"
+  /real-estate-propals-buyer-indication/{Id}:
+    get:
+      tags:
+      - "real-estate-propals-buyer-indication"
+      summary: "get a real-estate-propals-buyer-indication by ID"
+      description: "get a real-estate-propals-buyer-indication by ID"
+      operationId: "real_estate_propals_buyer_indicationIdGET"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of real-estate-propals-buyer-indication to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/RealEstatePropalsBuyerIndication"
+      x-swagger-router-controller: "RealEstatePropalsBuyerIndication"
+    delete:
+      tags:
+      - "real-estate-propals-buyer-indication"
+      summary: "Destroy a real-estate-propals-buyer-indication by ID"
+      description: "delete a real-estate-propals-buyer-indication by ID"
+      operationId: "real_estate_propals_buyer_indicationIdDELETE"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of real-estate-propals-buyer-indication to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "RealEstatePropalsBuyerIndication"
+  /real-estate-visit:
+    get:
+      tags:
+      - "real-estate-visit"
+      summary: "get all real-estate-visit by pagination"
+      description: ""
+      operationId: "real_estate_visitGET"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where\
+          \ id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+        default: 2
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/RealEstateVisitPagination"
+      x-swagger-router-controller: "RealEstateVisit"
+    post:
+      tags:
+      - "real-estate-visit"
+      summary: "create real-estate-visit"
+      description: "create real-estate-visit"
+      operationId: "real_estate_visitPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create real-estate-visit"
+        required: true
+        schema:
+          $ref: "#/definitions/RealEstateVisit"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "RealEstateVisit"
+    patch:
+      tags:
+      - "real-estate-visit"
+      summary: "update real-estate-visit"
+      description: "update real-estate-visit"
+      operationId: "real_estate_visitPATCH"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create real-estate-visit"
+        required: true
+        schema:
+          $ref: "#/definitions/RealEstateVisit"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "RealEstateVisit"
+  /real-estate-visit/{Id}:
+    get:
+      tags:
+      - "real-estate-visit"
+      summary: "get a real-estate-visit by ID"
+      description: "get a real-estate-visit by ID"
+      operationId: "real_estate_visitIdGET"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of real-estate-visit to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/RealEstateVisit"
+      x-swagger-router-controller: "RealEstateVisit"
+    delete:
+      tags:
+      - "real-estate-visit"
+      summary: "Destroy a real-estate-visit by ID"
+      description: "delete a real-estate-visit by ID"
+      operationId: "real_estate_visitIdDELETE"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of real-estate-visit to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "RealEstateVisit"
+  /login:
+    post:
+      tags:
+      - "auth"
+      summary: "login by user"
+      description: "login by user"
+      operationId: "loginPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create user"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/UserAuth"
+      x-swagger-router-controller: "Auth"
+  /user:
+    get:
+      tags:
+      - "user"
+      summary: "get all user by pagination"
+      description: ""
+      operationId: "userGET"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where\
+          \ id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+        default: 2
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/UserPagination"
+      x-swagger-router-controller: "User"
+    post:
+      tags:
+      - "user"
+      summary: "create user"
+      description: "create user"
+      operationId: "userPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create user"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "User"
+    patch:
+      tags:
+      - "user"
+      summary: "update user"
+      description: "update user"
+      operationId: "userPATCH"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create user"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "User"
+  /user/{Id}:
+    get:
+      tags:
+      - "user"
+      summary: "get a user by ID"
+      description: "get a user by ID"
+      operationId: "userIdGET"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of user to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+      x-swagger-router-controller: "User"
+    delete:
+      tags:
+      - "user"
+      summary: "Destroy a user by ID"
+      description: "delete a user by ID"
+      operationId: "userIdDELETE"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of user to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "User"
+definitions:
+  Chat:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        description: "Id de la conversation"
+      id_user1:
+        type: "integer"
+        format: "int64"
+        description: "Id utilisateur 1"
+      id_user2:
+        type: "integer"
+        format: "int64"
+        description: "Id utilisateur 2"
+    example:
+      id: 5
+      id_user2: 7
+      id_user1: 2
+  ChatPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+        description: "json repose code"
+      total:
+        type: "integer"
+        format: "int32"
+        description: "total numbers"
+      offset:
+        type: "integer"
+        format: "int32"
+        description: "offset"
+      limit:
+        type: "integer"
+        format: "int32"
+        description: "limit"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/Chat"
+    example:
+      total: 6
+      code: 0
+      offset: 1
+      limit: 5
+      list:
+      - id: 5
+        id_user2: 7
+        id_user1: 2
+      - id: 5
+        id_user2: 7
+        id_user1: 2
+  ChatComment:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        description: "Id du commentaire"
+      id_chat:
+        type: "integer"
+        format: "int64"
+        description: "Id de la conversation"
+      id_user:
+        type: "integer"
+        format: "int64"
+        description: "Id de l'utilisateur qui a écrit le commentaire"
+      comment:
+        type: "string"
+        format: "string"
+        description: "Commentaire"
+      date:
+        type: "string"
+        format: "date-time"
+        description: "Date du commentaire"
+    example:
+      id_chat: 2
+      date: "2000-01-23T04:56:07.000+00:00"
+      comment: "comment"
+      id: 5
+      id_user: 7
+  ChatCommentPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+        description: "json repose code"
+      total:
+        type: "integer"
+        format: "int32"
+        description: "total numbers"
+      offset:
+        type: "integer"
+        format: "int32"
+        description: "offset"
+      limit:
+        type: "integer"
+        format: "int32"
+        description: "limit"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/ChatComment"
+    example:
+      total: 6
+      code: 0
+      offset: 1
+      limit: 5
+      list:
+      - id_chat: 2
+        date: "2000-01-23T04:56:07.000+00:00"
+        comment: "comment"
+        id: 5
+        id_user: 7
+      - id_chat: 2
+        date: "2000-01-23T04:56:07.000+00:00"
+        comment: "comment"
+        id: 5
+        id_user: 7
+  City:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        description: "Id de la ville"
+      name:
+        type: "string"
+        format: "string"
+        description: "Nom de la ville"
+      zip_code:
+        type: "string"
+        format: "string"
+        description: "Code postal de la ville"
+    example:
+      name: "name"
+      id: 5
+      zip_code: "zip_code"
+  CityPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+        description: "json repose code"
+      total:
+        type: "integer"
+        format: "int32"
+        description: "total numbers"
+      offset:
+        type: "integer"
+        format: "int32"
+        description: "offset"
+      limit:
+        type: "integer"
+        format: "int32"
+        description: "limit"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/City"
+    example:
+      total: 6
+      code: 0
+      offset: 1
+      limit: 5
+      list:
+      - name: "name"
+        id: 5
+        zip_code: "zip_code"
+      - name: "name"
+        id: 5
+        zip_code: "zip_code"
+  CitiesDistrict:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        description: "Id du quartier"
+      id_city:
+        type: "integer"
+        format: "int64"
+        description: "Id de la ville"
+      name:
+        type: "string"
+        format: "string"
+        description: "Nom du quartier"
+    example:
+      id_city: 2
+      name: "name"
+      id: 5
+  CitiesDistrictPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+        description: "json repose code"
+      total:
+        type: "integer"
+        format: "int32"
+        description: "total numbers"
+      offset:
+        type: "integer"
+        format: "int32"
+        description: "offset"
+      limit:
+        type: "integer"
+        format: "int32"
+        description: "limit"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/CitiesDistrict"
+    example:
+      total: 6
+      code: 0
+      offset: 1
+      limit: 5
+      list:
+      - id_city: 2
+        name: "name"
+        id: 5
+      - id_city: 2
+        name: "name"
+        id: 5
+  RealEstate:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        description: "Id du bien"
+      id_user:
+        type: "integer"
+        format: "int64"
+        description: "Id du proprietaire"
+      accroche:
+        type: "string"
+        format: "string"
+        description: "Phrase d'accroche (max 100 caractères)"
+      type:
+        type: "string"
+        format: "string"
+        description: "Type de bien ('apartment','house','vacant_lot','parking','loft','castle','building')"
+      nb_rooms:
+        type: "integer"
+        format: "int64"
+        description: "Nombre de pièce"
+      nb_bedroom:
+        type: "integer"
+        format: "int64"
+        description: "Nombre de chambre"
+      description:
+        type: "string"
+        format: "string"
+        description: "Description"
+      size:
+        type: "integer"
+        format: "int64"
+        description: "Superficie (en entier)"
+      price:
+        type: "integer"
+        format: "int64"
+        description: "Prix du bien"
+      address:
+        type: "string"
+        format: "string"
+        description: "Adresse"
+      zip_code:
+        type: "string"
+        format: "string"
+        description: "Code postal"
+      city:
+        type: "string"
+        format: "string"
+        description: "Ville"
+      latitude:
+        type: "string"
+        format: "string"
+        description: "Latitude"
+      longitude:
+        type: "string"
+        format: "string"
+        description: "Longitude"
+      energy_class:
+        type: "string"
+        format: "string"
+        description: "Classe d'énergie"
+      ges_class:
+        type: "string"
+        format: "string"
+        description: "Classe GES"
+      has_garden:
+        type: "integer"
+        format: "int64"
+        description: "A un jardin"
+      has_exposed_stone:
+        type: "integer"
+        format: "int64"
+        description: "A des pierres apparentes"
+      has_ciment_tiles:
+        type: "integer"
+        format: "int64"
+        description: "A des carreaux de ciments"
+      has_parquet_floor:
+        type: "integer"
+        format: "int64"
+        description: "A du parquet au sol"
+    example:
+      ges_class: "ges_class"
+      address: "address"
+      city: "city"
+      accroche: "accroche"
+      latitude: "latitude"
+      description: "description"
+      id_user: 2
+      type: "type"
+      zip_code: "zip_code"
+      has_exposed_stone: 7
+      has_garden: 4
+      nb_bedroom: 9
+      size: 3
+      price: 2
+      nb_rooms: 7
+      energy_class: "energy_class"
+      id: 5
+      has_parquet_floor: 1
+      longitude: "longitude"
+      has_ciment_tiles: 1
+  RealEstatePagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+        description: "json repose code"
+      total:
+        type: "integer"
+        format: "int32"
+        description: "total numbers"
+      offset:
+        type: "integer"
+        format: "int32"
+        description: "offset"
+      limit:
+        type: "integer"
+        format: "int32"
+        description: "limit"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/RealEstate"
+    example:
+      total: 6
+      code: 0
+      offset: 1
+      limit: 5
+      list:
+      - ges_class: "ges_class"
+        address: "address"
+        city: "city"
+        accroche: "accroche"
+        latitude: "latitude"
+        description: "description"
+        id_user: 2
+        type: "type"
+        zip_code: "zip_code"
+        has_exposed_stone: 7
+        has_garden: 4
+        nb_bedroom: 9
+        size: 3
+        price: 2
+        nb_rooms: 7
+        energy_class: "energy_class"
+        id: 5
+        has_parquet_floor: 1
+        longitude: "longitude"
+        has_ciment_tiles: 1
+      - ges_class: "ges_class"
+        address: "address"
+        city: "city"
+        accroche: "accroche"
+        latitude: "latitude"
+        description: "description"
+        id_user: 2
+        type: "type"
+        zip_code: "zip_code"
+        has_exposed_stone: 7
+        has_garden: 4
+        nb_bedroom: 9
+        size: 3
+        price: 2
+        nb_rooms: 7
+        energy_class: "energy_class"
+        id: 5
+        has_parquet_floor: 1
+        longitude: "longitude"
+        has_ciment_tiles: 1
+  RealEstateAvailability:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        description: "Id de la disponibilité"
+      price:
+        type: "number"
+        format: "float"
+        description: "Prix de la visite"
+      start_date:
+        type: "string"
+        format: "date-time"
+        description: "Date de début"
+      end_date:
+        type: "string"
+        format: "date-time"
+        description: "Date de fin"
+      start_time:
+        type: "string"
+        format: "date-time"
+        description: "De "
+      end_time:
+        type: "string"
+        format: "date-time"
+        description: "à"
+    example:
+      end_date: "2000-01-23T04:56:07.000+00:00"
+      start_time: "2000-01-23T04:56:07.000+00:00"
+      price: 2.302136
+      end_time: "2000-01-23T04:56:07.000+00:00"
+      id: 5
+      start_date: "2000-01-23T04:56:07.000+00:00"
+  RealEstateAvailabilityPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+        description: "json repose code"
+      total:
+        type: "integer"
+        format: "int32"
+        description: "total numbers"
+      offset:
+        type: "integer"
+        format: "int32"
+        description: "offset"
+      limit:
+        type: "integer"
+        format: "int32"
+        description: "limit"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/RealEstateAvailability"
+    example:
+      total: 6
+      code: 0
+      offset: 1
+      limit: 5
+      list:
+      - end_date: "2000-01-23T04:56:07.000+00:00"
+        start_time: "2000-01-23T04:56:07.000+00:00"
+        price: 2.302136
+        end_time: "2000-01-23T04:56:07.000+00:00"
+        id: 5
+        start_date: "2000-01-23T04:56:07.000+00:00"
+      - end_date: "2000-01-23T04:56:07.000+00:00"
+        start_time: "2000-01-23T04:56:07.000+00:00"
+        price: 2.302136
+        end_time: "2000-01-23T04:56:07.000+00:00"
+        id: 5
+        start_date: "2000-01-23T04:56:07.000+00:00"
+  RealEstateFeedback:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        description: "Id du feedback"
+      id_user:
+        type: "integer"
+        format: "int64"
+        description: "Id de l'utilisateur"
+      id_real_estate:
+        type: "integer"
+        format: "int64"
+        description: "Id du bien"
+      feedback:
+        type: "string"
+        format: "string"
+        description: "Feedback"
+      date:
+        type: "string"
+        format: "date-time"
+        description: "Date (YYYY-mm-dd hh:mm:ss)"
+    example:
+      feedback: "feedback"
+      date: "2000-01-23T04:56:07.000+00:00"
+      id: 5
+      id_user: 2
+      id_real_estate: 7
+  RealEstateFeedbackPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+        description: "json repose code"
+      total:
+        type: "integer"
+        format: "int32"
+        description: "total numbers"
+      offset:
+        type: "integer"
+        format: "int32"
+        description: "offset"
+      limit:
+        type: "integer"
+        format: "int32"
+        description: "limit"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/RealEstateFeedback"
+    example:
+      total: 6
+      code: 0
+      offset: 1
+      limit: 5
+      list:
+      - feedback: "feedback"
+        date: "2000-01-23T04:56:07.000+00:00"
+        id: 5
+        id_user: 2
+        id_real_estate: 7
+      - feedback: "feedback"
+        date: "2000-01-23T04:56:07.000+00:00"
+        id: 5
+        id_user: 2
+        id_real_estate: 7
+  RealEstateImage:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        description: "Id de l'image"
+      id_real_estate:
+        type: "integer"
+        format: "int64"
+        description: "Id du bien"
+      url:
+        type: "string"
+        format: "string"
+        description: "Url de l'image"
+    example:
+      id: 5
+      id_real_estate: 2
+      url: "url"
+  RealEstateImagePagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+        description: "json repose code"
+      total:
+        type: "integer"
+        format: "int32"
+        description: "total numbers"
+      offset:
+        type: "integer"
+        format: "int32"
+        description: "offset"
+      limit:
+        type: "integer"
+        format: "int32"
+        description: "limit"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/RealEstateImage"
+    example:
+      total: 6
+      code: 0
+      offset: 1
+      limit: 5
+      list:
+      - id: 5
+        id_real_estate: 2
+        url: "url"
+      - id: 5
+        id_real_estate: 2
+        url: "url"
+  RealEstatePropal:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        description: "Id de la proposition"
+      id_booker:
+        type: "integer"
+        format: "int64"
+        description: "Id du booker"
+      id_buyer:
+        type: "integer"
+        format: "int64"
+        description: "Id du visitor"
+      id_real_estate:
+        type: "integer"
+        format: "int64"
+        description: "Id du bien"
+      id_vendor:
+        type: "integer"
+        format: "int64"
+        description: "Id du propriétaire"
+      price:
+        type: "number"
+        format: "float"
+        description: "Montant de la proposition"
+      buyer_first_name:
+        type: "string"
+        format: "string"
+        description: "Prénom de l'acheteur"
+      buyer_last_name:
+        type: "string"
+        format: "string"
+        description: "Nom de l'acheteur"
+      buyer_address:
+        type: "string"
+        format: "string"
+        description: "Adresse de l'acheteur"
+      buyer_zip_code:
+        type: "string"
+        format: "string"
+        description: "Code postal de l'acheteur"
+      buyer_city:
+        type: "string"
+        format: "string"
+        description: "Ville de l'acheteur"
+      expiration_date:
+        type: "string"
+        format: "date-time"
+        description: "Date d'expiration de l'offre"
+      is_accepted:
+        type: "integer"
+        format: "int64"
+        description: "Est accepté?"
+    example:
+      is_accepted: 4
+      buyer_first_name: "buyer_first_name"
+      buyer_address: "buyer_address"
+      id_real_estate: 9
+      expiration_date: "2000-01-23T04:56:07.000+00:00"
+      id_buyer: 7
+      buyer_zip_code: "buyer_zip_code"
+      buyer_city: "buyer_city"
+      price: 2.027123
+      id_booker: 2
+      id_vendor: 3
+      id: 5
+      buyer_last_name: "buyer_last_name"
+  RealEstatePropalPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+        description: "json repose code"
+      total:
+        type: "integer"
+        format: "int32"
+        description: "total numbers"
+      offset:
+        type: "integer"
+        format: "int32"
+        description: "offset"
+      limit:
+        type: "integer"
+        format: "int32"
+        description: "limit"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/RealEstatePropal"
+    example:
+      total: 6
+      code: 0
+      offset: 1
+      limit: 5
+      list:
+      - is_accepted: 4
+        buyer_first_name: "buyer_first_name"
+        buyer_address: "buyer_address"
+        id_real_estate: 9
+        expiration_date: "2000-01-23T04:56:07.000+00:00"
+        id_buyer: 7
+        buyer_zip_code: "buyer_zip_code"
+        buyer_city: "buyer_city"
+        price: 2.027123
+        id_booker: 2
+        id_vendor: 3
+        id: 5
+        buyer_last_name: "buyer_last_name"
+      - is_accepted: 4
+        buyer_first_name: "buyer_first_name"
+        buyer_address: "buyer_address"
+        id_real_estate: 9
+        expiration_date: "2000-01-23T04:56:07.000+00:00"
+        id_buyer: 7
+        buyer_zip_code: "buyer_zip_code"
+        buyer_city: "buyer_city"
+        price: 2.027123
+        id_booker: 2
+        id_vendor: 3
+        id: 5
+        buyer_last_name: "buyer_last_name"
+  RealEstatePropalsBuyerIndication:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        description: "Id de l'indication"
+      id_propal:
+        type: "integer"
+        format: "int64"
+        description: "Id de la proposition"
+      id_buyer:
+        type: "integer"
+        format: "int64"
+        description: "Id de l'acheteur"
+      id_vendor:
+        type: "integer"
+        format: "int64"
+        description: "Id du vendeur"
+      has_total_in_cash:
+        type: "integer"
+        format: "int64"
+        description: "a le total en cash ?"
+      has_financial_support:
+        type: "integer"
+        format: "int64"
+        description: "a un apport financier ?"
+      has_big_financial_support:
+        type: "integer"
+        format: "int64"
+        description: "a un apport financier important ? (>30% du bien)"
+      has_very_big_financial_support:
+        type: "integer"
+        format: "int64"
+        description: "a un apport financier très important ? (> 70% du bien)"
+      want_a_long_sell:
+        type: "integer"
+        format: "int64"
+        description: "veut une vente longue ? (+ de 6 mois)"
+    example:
+      id_propal: 2
+      has_total_in_cash: 3
+      has_big_financial_support: 4
+      id_vendor: 9
+      id: 5
+      has_financial_support: 2
+      want_a_long_sell: 1
+      id_buyer: 7
+      has_very_big_financial_support: 7
+  RealEstatePropalsBuyerIndicationPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+        description: "json repose code"
+      total:
+        type: "integer"
+        format: "int32"
+        description: "total numbers"
+      offset:
+        type: "integer"
+        format: "int32"
+        description: "offset"
+      limit:
+        type: "integer"
+        format: "int32"
+        description: "limit"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/RealEstatePropalsBuyerIndication"
+    example:
+      total: 6
+      code: 0
+      offset: 1
+      limit: 5
+      list:
+      - id_propal: 2
+        has_total_in_cash: 3
+        has_big_financial_support: 4
+        id_vendor: 9
+        id: 5
+        has_financial_support: 2
+        want_a_long_sell: 1
+        id_buyer: 7
+        has_very_big_financial_support: 7
+      - id_propal: 2
+        has_total_in_cash: 3
+        has_big_financial_support: 4
+        id_vendor: 9
+        id: 5
+        has_financial_support: 2
+        want_a_long_sell: 1
+        id_buyer: 7
+        has_very_big_financial_support: 7
+  RealEstateVisit:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        description: "Id de la visite"
+      id_real_estate:
+        type: "integer"
+        format: "int64"
+        description: "Id du bien"
+      id_booker:
+        type: "integer"
+        format: "int64"
+        description: "Id du booker"
+      id_visitor:
+        type: "integer"
+        format: "int64"
+        description: "Id du visiteur"
+      start_date:
+        type: "string"
+        format: "date-time"
+        description: "Date de début (YYYY-mm-dd)"
+      end_date:
+        type: "string"
+        format: "date-time"
+        description: "Date de fin (YYYY-mm-dd)"
+      start_time:
+        type: "string"
+        format: "date-time"
+        description: "Heure de début (hh:mm)"
+      end_time:
+        type: "string"
+        format: "date-time"
+        description: "Heure de fin (hh:mm)"
+      booker_is_ready:
+        type: "integer"
+        format: "int64"
+        description: "Le booker est prêt ?"
+      visitor_is_ready:
+        type: "integer"
+        format: "int64"
+        description: "Les visiteurs sont prêts ?"
+    example:
+      end_date: "2000-01-23T04:56:07.000+00:00"
+      booker_is_ready: 3
+      start_time: "2000-01-23T04:56:07.000+00:00"
+      id_visitor: 9
+      id_booker: 7
+      end_time: "2000-01-23T04:56:07.000+00:00"
+      visitor_is_ready: 2
+      id: 5
+      id_real_estate: 2
+      start_date: "2000-01-23T04:56:07.000+00:00"
+  RealEstateVisitPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+        description: "json repose code"
+      total:
+        type: "integer"
+        format: "int32"
+        description: "total numbers"
+      offset:
+        type: "integer"
+        format: "int32"
+        description: "offset"
+      limit:
+        type: "integer"
+        format: "int32"
+        description: "limit"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/RealEstateVisit"
+    example:
+      total: 6
+      code: 0
+      offset: 1
+      limit: 5
+      list:
+      - end_date: "2000-01-23T04:56:07.000+00:00"
+        booker_is_ready: 3
+        start_time: "2000-01-23T04:56:07.000+00:00"
+        id_visitor: 9
+        id_booker: 7
+        end_time: "2000-01-23T04:56:07.000+00:00"
+        visitor_is_ready: 2
+        id: 5
+        id_real_estate: 2
+        start_date: "2000-01-23T04:56:07.000+00:00"
+      - end_date: "2000-01-23T04:56:07.000+00:00"
+        booker_is_ready: 3
+        start_time: "2000-01-23T04:56:07.000+00:00"
+        id_visitor: 9
+        id_booker: 7
+        end_time: "2000-01-23T04:56:07.000+00:00"
+        visitor_is_ready: 2
+        id: 5
+        id_real_estate: 2
+        start_date: "2000-01-23T04:56:07.000+00:00"
+  UserAuth:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        description: "Id de l'utilisateur"
+      email:
+        type: "string"
+        format: "string"
+        description: "Email de l'utilisateur qui sert aussi de login"
+      password:
+        type: "string"
+        format: "string"
+        description: "Mot de passe de l'utilisateur"
+      avatar:
+        type: "string"
+        format: "string"
+        description: "Url de l'avatar de l'utilisateur"
+      first_name:
+        type: "string"
+        format: "string"
+        description: "Prénom de l'utilisateur"
+      last_name:
+        type: "string"
+        format: "string"
+        description: "Nom de l'utilisateur"
+      address:
+        type: "string"
+        format: "string"
+        description: "Adresse"
+      zip_code:
+        type: "string"
+        format: "string"
+        description: "Code postal"
+      city:
+        type: "string"
+        format: "string"
+        description: "Ville"
+      latitude:
+        type: "string"
+        format: "string"
+        description: "Latitude"
+      longitude:
+        type: "string"
+        format: "string"
+        description: "Longitude"
+      token:
+        type: "string"
+        format: "string"
+        description: "jwt token"
+      expire:
+        type: "string"
+        format: "date-time"
+        description: "jwt token expire time"
+      expire_ts:
+        type: "integer"
+        format: "int64"
+        description: "expire timestamp unix"
+    example:
+      address: "address"
+      city: "city"
+      latitude: "latitude"
+      last_name: "last_name"
+      avatar: "avatar"
+      zip_code: "zip_code"
+      token: "token"
+      password: "password"
+      expire_ts: 6
+      expire: "2000-01-23T04:56:07.000+00:00"
+      id: 0
+      first_name: "first_name"
+      email: "email"
+      longitude: "longitude"
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        description: "Id de l'utilisateur"
+      email:
+        type: "string"
+        format: "string"
+        description: "Email de l'utilisateur qui sert aussi de login"
+      password:
+        type: "string"
+        format: "string"
+        description: "Mot de passe de l'utilisateur"
+      avatar:
+        type: "string"
+        format: "string"
+        description: "Url de l'avatar de l'utilisateur"
+      first_name:
+        type: "string"
+        format: "string"
+        description: "Prénom de l'utilisateur"
+      last_name:
+        type: "string"
+        format: "string"
+        description: "Nom de l'utilisateur"
+      address:
+        type: "string"
+        format: "string"
+        description: "Adresse"
+      zip_code:
+        type: "string"
+        format: "string"
+        description: "Code postal"
+      city:
+        type: "string"
+        format: "string"
+        description: "Ville"
+      latitude:
+        type: "string"
+        format: "string"
+        description: "Latitude"
+      longitude:
+        type: "string"
+        format: "string"
+        description: "Longitude"
+    example:
+      password: "password"
+      address: "address"
+      city: "city"
+      latitude: "latitude"
+      last_name: "last_name"
+      id: 0
+      avatar: "avatar"
+      first_name: "first_name"
+      email: "email"
+      zip_code: "zip_code"
+      longitude: "longitude"
+  UserPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+        description: "json repose code"
+      total:
+        type: "integer"
+        format: "int32"
+        description: "total numbers"
+      offset:
+        type: "integer"
+        format: "int32"
+        description: "offset"
+      limit:
+        type: "integer"
+        format: "int32"
+        description: "limit"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/User"
+    example:
+      total: 6
+      code: 0
+      offset: 1
+      limit: 5
+      list:
+      - password: "password"
+        address: "address"
+        city: "city"
+        latitude: "latitude"
+        last_name: "last_name"
+        id: 0
+        avatar: "avatar"
+        first_name: "first_name"
+        email: "email"
+        zip_code: "zip_code"
+        longitude: "longitude"
+      - password: "password"
+        address: "address"
+        city: "city"
+        latitude: "latitude"
+        last_name: "last_name"
+        id: 0
+        avatar: "avatar"
+        first_name: "first_name"
+        email: "email"
+        zip_code: "zip_code"
+        longitude: "longitude"
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      msg:
+        type: "string"
+    example:
+      msg: "msg"
+      code: 0
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
