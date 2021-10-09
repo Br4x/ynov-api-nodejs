@@ -14,10 +14,7 @@ const table = "real_estate_images";
  * returns List
  **/
 exports.real_estate_imageGET = function (where, fields, order, offset, limit) {
-  return new Promise(function (resolve, reject) {
-    const response = db.list(table, where, fields, order, offset, limit);
-    resolve(response);
-  });
+    return db.list(table, where, fields, order, offset, limit);
 };
 
 /**
@@ -28,10 +25,7 @@ exports.real_estate_imageGET = function (where, fields, order, offset, limit) {
  * returns ApiResponse
  **/
 exports.real_estate_imageIdDELETE = function (id) {
-  return new Promise(function (resolve, reject) {
-    const response = db.deletebyId(table, id);
-    resolve(response);
-  });
+    return db.deletebyId(table, id);
 };
 
 /**
@@ -42,10 +36,7 @@ exports.real_estate_imageIdDELETE = function (id) {
  * returns RealEstateImage
  **/
 exports.real_estate_imageIdGET = function (id) {
-  return new Promise(function (resolve, reject) {
-    const response = db.getById(table, id);
-    resolve(response);
-  });
+  return db.getById(table, id)
 };
 
 /**
@@ -56,10 +47,7 @@ exports.real_estate_imageIdGET = function (id) {
  * returns ApiResponse
  **/
 exports.real_estate_imagePATCH = function (body) {
-  return new Promise(function (resolve, reject) {
-    const response = db.update(table, body);
-    resolve(response);
-  });
+    return db.update(table, body);
 };
 
 /**
@@ -70,8 +58,5 @@ exports.real_estate_imagePATCH = function (body) {
  * returns ApiResponse
  **/
 exports.real_estate_imagePOST = function (body) {
-  return new Promise(function (resolve, reject) {
-    const response = db.create(table, body);
-    resolve(response);
-  });
+ return db.create(table, body);
 };

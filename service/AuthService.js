@@ -9,8 +9,5 @@ const table = "auth";
  * returns UserAuth
  **/
 exports.loginPOST = function (body) {
-  return new Promise(function (resolve, reject) {
-    const response = db.create(table, body);
-    resolve(response);
-  });
+ return db.create(table, body);
 };

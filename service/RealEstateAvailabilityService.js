@@ -20,10 +20,7 @@ exports.real_estate_availabilityGET = function (
   offset,
   limit
 ) {
-  return new Promise(function (resolve, reject) {
-    const response = db.list(table, where, fields, order, offset, limit);
-    resolve(response);
-  });
+    return db.list(table, where, fields, order, offset, limit);
 };
 
 /**
@@ -34,10 +31,7 @@ exports.real_estate_availabilityGET = function (
  * returns ApiResponse
  **/
 exports.real_estate_availabilityIdDELETE = function (id) {
-  return new Promise(function (resolve, reject) {
-    const response = db.deletebyId(table, id);
-    resolve(response);
-  });
+    return db.deletebyId(table, id);
 };
 
 /**
@@ -48,10 +42,7 @@ exports.real_estate_availabilityIdDELETE = function (id) {
  * returns RealEstateAvailability
  **/
 exports.real_estate_availabilityIdGET = function (id) {
-  return new Promise(function (resolve, reject) {
-    const response = db.getById(table, id);
-    resolve(response);
-  });
+  return db.getById(table, id)
 };
 
 /**
@@ -62,10 +53,7 @@ exports.real_estate_availabilityIdGET = function (id) {
  * returns ApiResponse
  **/
 exports.real_estate_availabilityPATCH = function (body) {
-  return new Promise(function (resolve, reject) {
-    const response = db.update(table, body);
-    resolve(response);
-  });
+    return db.update(table, body);
 };
 
 /**
@@ -76,8 +64,5 @@ exports.real_estate_availabilityPATCH = function (body) {
  * returns ApiResponse
  **/
 exports.real_estate_availabilityPOST = function (body) {
-  return new Promise(function (resolve, reject) {
-    const response = db.create(table, body);
-    resolve(response);
-  });
+ return db.create(table, body);
 };

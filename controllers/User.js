@@ -33,6 +33,7 @@ module.exports.userIdGET = function userIdGET (req, res, next) {
   var id = req.swagger.params['Id'].value;
   User.userIdGET(id)
     .then(function (response) {
+      console.log(response)
       utils.writeJson(res, response);
     })
     .catch(function (response) {

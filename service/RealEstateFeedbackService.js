@@ -20,10 +20,7 @@ exports.real_estate_feedbackGET = function (
   offset,
   limit
 ) {
-  return new Promise(function (resolve, reject) {
-    const response = db.list(table, where, fields, order, offset, limit);
-    resolve(response);
-  });
+    return db.list(table, where, fields, order, offset, limit);
 };
 
 /**
@@ -34,10 +31,7 @@ exports.real_estate_feedbackGET = function (
  * returns ApiResponse
  **/
 exports.real_estate_feedbackIdDELETE = function (id) {
-  return new Promise(function (resolve, reject) {
-    const response = db.deletebyId(table, id);
-    resolve(response);
-  });
+    return db.deletebyId(table, id);
 };
 
 /**
@@ -48,10 +42,7 @@ exports.real_estate_feedbackIdDELETE = function (id) {
  * returns RealEstateFeedback
  **/
 exports.real_estate_feedbackIdGET = function (id) {
-  return new Promise(function (resolve, reject) {
-    const response = db.getById(table, id);
-    resolve(response);
-  });
+  return db.getById(table, id)
 };
 
 /**
@@ -62,10 +53,7 @@ exports.real_estate_feedbackIdGET = function (id) {
  * returns ApiResponse
  **/
 exports.real_estate_feedbackPATCH = function (body) {
-  return new Promise(function (resolve, reject) {
-    const response = db.update(table, body);
-    resolve(response);
-  });
+    return db.update(table, body);
 };
 
 /**
@@ -76,8 +64,5 @@ exports.real_estate_feedbackPATCH = function (body) {
  * returns ApiResponse
  **/
 exports.real_estate_feedbackPOST = function (body) {
-  return new Promise(function (resolve, reject) {
-    const response = db.create(table, body);
-    resolve(response);
-  });
+ return db.create(table, body);
 };
