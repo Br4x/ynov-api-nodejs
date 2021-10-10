@@ -39,8 +39,7 @@ exports.list = function (table, where, fields, order, offset, limit) {
   return new Promise((resolve, reject) => {
     connection.query(sql, (err, res) => {
       if (err) {
-        console.log("error: ", err);
-        return resolve({ data: { error: err }, code: 400 });
+        return reject({ data: { error: err.sqlMessage }, code: 400 });
       }
 
       return resolve({ data: { ...res }, code: 200 });
@@ -52,8 +51,7 @@ exports.deletebyId = function (table, id) {
   return new Promise((resolve, reject) => {
     connection.query(`DELETE FROM ${table} WHERE id = ?`, id, (err, res) => {
       if (err) {
-        console.log("error: ", err);
-        return resolve({ data: { error: err }, code: 400 });
+        return reject({ data: { error: err.sqlMessage }, code: 400 });
       }
 
       return resolve({ data: {}, code: 200 });
@@ -65,8 +63,7 @@ exports.getById = async (table, id) => {
   return new Promise((resolve, reject) => {
     connection.query(`SELECT * FROM ${table} WHERE id = ?`, id, (err, res) => {
       if (err) {
-        console.log("error: ", err);
-        return resolve({ data: { error: err }, code: 400 });
+        return reject({ data: { error: err.sqlMessage }, code: 400 });
       }
       if (res[0].password) {
         delete res[0].password;
@@ -80,9 +77,9 @@ exports.getById = async (table, id) => {
 exports.create = async (table, body) => {
   return new Promise((resolve, reject) => {
     connection.query(`INSERT INTO ${table} SET ?`, body, (err, res) => {
+      
       if (err) {
-        console.log("error: ", err);
-        return resolve({ data: { error: err }, code: 400 });
+        return reject({ data: { error: err.sqlMessage }, code: 400 });
       }
 
       return resolve({ data: { ...body, id: res.insertId }, code: 200 });
@@ -97,8 +94,7 @@ exports.update = function (table, body) {
       body,
       (err, res) => {
         if (err) {
-          console.log("error: ", err);
-          return resolve({ data: { error: err }, code: 400 });
+          return reject({ data: { error: err.sqlMessage }, code: 400 });
         }
 
         return resolve({ data: { ...body, id: res.insertId }, code: 200 });
