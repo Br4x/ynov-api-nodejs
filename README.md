@@ -17,3 +17,12 @@ open http://localhost:8080/docs
 ```
 
 This project leverages the mega-awesome [swagger-tools](https://github.com/apigee-127/swagger-tools) middleware which does most all the work.
+
+# Docker
+`docker volume create bdd-ynov-immo-5`
+`docker-compose up`
+`sudo cp ./bdd.sql /var/lib/docker/volumes/bdd-ynov-immo-5/_data/data.sql`
+`docker exec -ti ynov-api-nodejs_mysqldb_1 sh`
+`mysql -u root -proot`
+  `CREATE DATABASE ynov_immo;`
+`mysql -u root -proot ynov_immo < /var/lib/mysql/data.sql`
